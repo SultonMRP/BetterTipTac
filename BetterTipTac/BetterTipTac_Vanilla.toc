@@ -1,0 +1,38 @@
+## Interface: 11509
+## Version: 11.06.26
+## IconTexture: Interface\AddOns\BetterTipTac\media\tiptac_logo
+## Title: BetterTipTac
+## Author: Frozn45, Aezay (Earthen Ring EU)
+## Notes: TipTac engine with Everlight tooltip chrome
+## SavedVariables: BetterTipTac_Config
+## Category-enUS: User Interface
+## Category-deDE: Benutzerinterface
+## Category-esES: Interfaz de usuario
+## Category-esMX: Interfaz de usuario
+## Category-frFR: Interface utilisateur
+## Category-itIT: Interfaccia utente
+## Category-koKR: 사용자 인터페이스
+## Category-ptBR: Interface do usuário
+## Category-ruRU: Интерфейс пользователя
+## Category-zhCN: 用户界面
+## Category-zhTW: 使用者介面
+## AddonCompartmentFunc: BetterTipTac_OnAddonCompartmentClick
+## AddonCompartmentFuncOnEnter: BetterTipTac_OnAddonCompartmentEnter
+## AddonCompartmentFuncOnLeave: BetterTipTac_OnAddonCompartmentLeave
+## X-Category: Tooltip
+## X-Website: https://www.curseforge.com/wow/addons/tiptac-reborn
+## X-Curse-Project-ID: 695153
+
+# embeds
+embeds.xml
+
+# core
+ttCore.lua
+
+# modules
+modules\ttAuras.lua
+modules\ttBars.lua
+modules\ttIcons.lua
+modules\ttHyperlink.lua
+modules\ttStyle.lua
+modules\ttEverlightPaint.lua

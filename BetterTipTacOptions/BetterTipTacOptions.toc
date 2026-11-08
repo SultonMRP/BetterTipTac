@@ -1,0 +1,27 @@
+## Interface: 120100, 16001
+## Version: 11.06.26
+## IconTexture: Interface\AddOns\BetterTipTacOptions\media\tiptac_logo
+## Title: BetterTipTacOptions
+## Author: Frozn45, Aezay (Earthen Ring EU)
+## Notes: Option Dialog for BetterTipTac
+## Category-enUS: User Interface
+## Category-deDE: Benutzerinterface
+## Category-esES: Interfaz de usuario
+## Category-esMX: Interfaz de usuario
+## Category-frFR: Interface utilisateur
+## Category-itIT: Interfaccia utente
+## Category-koKR: 사용자 인터페이스
+## Category-ptBR: Interface do usuário
+## Category-ruRU: Интерфейс пользователя
+## Category-zhCN: 用户界面
+## Category-zhTW: 使用者介面
+## Group: BetterTipTac
+## Dependencies: BetterTipTac
+## LoadOnDemand: 1
+## X-Category: Tooltip
+## X-Website: https://www.curseforge.com/wow/addons/tiptac-reborn
+## X-Curse-Project-ID: 695153
+embeds.xml
+
+ttLayouts.lua
+ttOptions.lua
