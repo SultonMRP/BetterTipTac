@@ -1,5 +1,5 @@
 ## Interface: 50504
-## Version: 11.06.26
+## Version: 1.0.1
 ## IconTexture: Interface\AddOns\BetterTipTacTalents\media\tiptac_logo
 ## Title: BetterTipTacTalents
 ## Author: Frozn45, Aezay (Earthen Ring EU)

@@ -1,5 +1,5 @@
 ## Interface: 20506
-## Version: 11.06.26
+## Version: 1.0.1
 ## IconTexture: Interface\AddOns\BetterTipTacItemRef\media\tiptac_logo
 ## Title: BetterTipTacItemRef
 ## Author: Frozn45, Aezay (Earthen Ring EU)

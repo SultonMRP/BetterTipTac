@@ -25,20 +25,21 @@ Reliable engine, new paint:
 
 - Positioning, default-anchor gating, fonts, bars, auras, unit text: `ttCore.lua` + `modules/tt*.lua` except paint.
 - Chrome only: `modules/ttEverlightPaint.lua` + `media/everlight/rounded-fill.tga` and `rounded-border.tga`.
-- Paint hooks `OnTipPostSetStyling` / `OnApplyConfig`. It must not `SetPoint`, `ClearAllPoints`, cursor-follow, or enable mouse on `GameTooltip`.
+- Paint must not replace TipTac `SetBackdrop`. Overlay chrome is off so Backdrop options and layout presets stay compatible. It must not `SetPoint`, `ClearAllPoints`, cursor-follow, enable mouse on `GameTooltip`, or zero backdrop colors.
 - `SetAnchorToTip` / `AnchorTipToMouse` only run when `currentDisplayParams.defaultAnchored` is true (set in `GameTooltip_SetDefaultAnchor`). Loot / bag / action-bar tips use `SetOwner` and must stay with the owner. Do not hijack `LootFrame` or `LootFrame.ScrollBox`.
 
 Forever loot is `LootFrame.ScrollBox` rows, not `LootButton1`. Click-loot fails if the tooltip covers the row or follows the cursor.
 
-## Defaults (Everlight look)
+## Defaults (TipTac backdrop)
 
 ```lua
-tipColor = { 0.12, 0.13, 0.15, 0.92 }
-tipBorderColor = { 0.08, 0.72, 0.78, 1 }
-gradientTip = false
+tipColor = { 0.1, 0.1, 0.2, 1 }
+tipBorderColor = { 0.3, 0.3, 0.4, 1 }
+gradientTip = true
+tipBackdropEdge = "Interface\\Tooltips\\UI-Tooltip-Border"
 ```
 
-Keep those as shipped defaults. Players can change colors in `/btt`.
+Keep TipTac's default border so `/btt` Backdrop and Layout presets apply unchanged. Players can still change colors in `/btt`.
 
 ## Edit rules
 

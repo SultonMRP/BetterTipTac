@@ -159,9 +159,9 @@ local TT_DefaultConfig = {
 	backdropEdgeSize = 14,
 	backdropInsets = 2.5,
 	
-	tipColor = { 0.12, 0.13, 0.15, 0.92 }, -- Everlight fill
-	tipBorderColor = { 0.08, 0.72, 0.78, 1 },  -- Everlight cyan border
-	gradientTip = false,
+	tipColor = { 0.1, 0.1, 0.2, 1 },        -- UI default: for most: (0.1, 0.1, 0.2, 1), world objects?: (0, 0.2, 0.35, 1)
+	tipBorderColor = { 0.3, 0.3, 0.4, 1 },  -- UI default: (1, 1, 1, 1)
+	gradientTip = true,
 	gradientColor = { 0.8, 0.8, 0.8, 0.15 },
 	gradientHeight = 32,
 	
@@ -4873,6 +4873,26 @@ LibFroznFunctions:RegisterForGroupEvents(MOD_NAME, {
 			{
 				["25.08.13"] = function()
 					cfg.hideRightClickForFrameSettingsTextInUnitTip = cfg.hideRightClickForFrameSettingsText;
+				end
+			},
+			-- changes in config with 26.11.11:
+			--
+			-- drop Everlight overlay chrome; restore TipTac default backdrop colors when still on shipped Everlight values
+			{
+				["26.11.11"] = function()
+					local function colorEquals(color, r, g, b, a)
+						return (type(color) == "table") and (color[1] == r) and (color[2] == g) and (color[3] == b) and ((color[4] or 1) == a);
+					end
+					
+					if (colorEquals(cfg.tipColor, 0.12, 0.13, 0.15, 0.92)) then
+						cfg.tipColor = { 0.1, 0.1, 0.2, 1 };
+					end
+					if (colorEquals(cfg.tipBorderColor, 0.08, 0.72, 0.78, 1)) then
+						cfg.tipBorderColor = { 0.3, 0.3, 0.4, 1 };
+					end
+					if (cfg.gradientTip == false) and (cfg.tipColor) and (cfg.tipColor[1] == 0.1) and (cfg.tipColor[2] == 0.1) and (cfg.tipColor[3] == 0.2) then
+						cfg.gradientTip = true;
+					end
 				end
 			}
 		};

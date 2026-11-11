@@ -1,9 +1,9 @@
 ## Interface: 16001
-## Version: 11.06.26
+## Version: 1.0.1
 ## IconTexture: Interface\AddOns\BetterTipTac\media\tiptac_logo
 ## Title: BetterTipTac
 ## Author: Frozn45, Aezay (Earthen Ring EU)
-## Notes: TipTac engine with Everlight tooltip chrome
+## Notes: TipTac engine with configurable tooltip backdrop
 ## Category-enUS: User Interface
 ## Category-deDE: Benutzerinterface
 ## Category-esES: Interfaz de usuario
