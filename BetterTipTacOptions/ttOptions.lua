@@ -883,6 +883,15 @@ if (BetterTipTacItemRef) then
 	});
 end
 
+-- Misc
+tinsert(options, {
+	category = "Misc",
+	options = {
+		{ type = "Header", label = "Visibility" },
+		{ type = "Slider", var = "overallAlpha", label = "Overall Alpha", min = 10, max = 100, step = 1, tip = "How visible tooltips are, from 10% to 100% visible. Saved with profiles, export/import, and copy-profile. Layout templates do not override this." },
+	}
+});
+
 -- Layouts
 tinsert(options, {
 	category = "Layouts",

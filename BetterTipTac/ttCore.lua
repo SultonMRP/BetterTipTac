@@ -38,6 +38,7 @@ local TT_DefaultConfig = {
 	showMinimapIcon = true,
 	minimapConfig = {},  -- set in LibDBIcon-1.0
 	gttScale = 1,
+	overallAlpha = 100,  -- percent visible (10-100). stored in AceDB profiles, export/import, and copy-profile.
 	manageAlwaysCompareItems = false,  -- false (default): TipTac doesn't touch the game's CVar "alwaysCompareItems". true: TipTac sets the CVar according to "alwaysCompareItems" below on login and when changed.
 	alwaysCompareItems = false,  -- only used if "manageAlwaysCompareItems" is true. false: sets the game's CVar "alwaysCompareItems" to 0 (compare only while holding Shift) for better performance. true: sets it to 1.
 	
@@ -2079,8 +2080,9 @@ function tt:SetAppearanceToTip(tip)
 		return;
 	end
 	
-	-- set scale, gradient and backdrop to tip
+	-- set scale, overall alpha, gradient and backdrop to tip
 	self:SetScaleToTip(tip, true);
+	self:SetOverallAlphaToTip(tip);
 	self:SetGradientToTip(tip);
 	self:SetBackdropToTip(tip);
 end
@@ -2600,6 +2602,55 @@ function tt:SetScaleToTip(tip, noFireGroupEvent)
 	isSettingScaleToTip = false;
 end
 
+-- overall alpha (percent visible from Misc options, 10-100)
+function tt:GetOverallAlpha()
+	local alpha = cfg.overallAlpha;
+	
+	if (type(alpha) ~= "number") then
+		alpha = TT_DefaultConfig.overallAlpha;
+	end
+	
+	if (alpha > 1) then
+		alpha = alpha / 100;
+	end
+	
+	if (alpha < 0.1) then
+		alpha = 0.1;
+	elseif (alpha > 1) then
+		alpha = 1;
+	end
+	
+	return alpha;
+end
+
+function tt:SetOverallAlphaToTip(tip, fadeMultiplier)
+	if (tip:IsForbidden()) then
+		return;
+	end
+	
+	local frameParams = TT_CacheForFrames[tip];
+	
+	if (not frameParams) then
+		return;
+	end
+	
+	if (not frameParams.config.applyAppearance) then
+		return;
+	end
+	
+	if (type(fadeMultiplier) ~= "number") then
+		fadeMultiplier = 1;
+	end
+	
+	if (fadeMultiplier < 0) then
+		fadeMultiplier = 0;
+	elseif (fadeMultiplier > 1) then
+		fadeMultiplier = 1;
+	end
+	
+	tip:SetAlpha(self:GetOverallAlpha() * fadeMultiplier);
+end
+
 -- set gradient to tip
 function tt:SetGradientToTip(tip)
 	-- check if insecure interaction with the tip is currently forbidden
@@ -2748,12 +2799,14 @@ LibFroznFunctions:RegisterForGroupEvents(MOD_NAME, {
 		end);
 	end,
 	OnTipSetStyling = function(self, TT_CacheForFrames, tip, currentDisplayParams, tipContent)
-		-- reapply scale to tip
+		-- reapply scale and overall alpha to tip
 		tt:SetScaleToTip(tip);
+		tt:SetOverallAlphaToTip(tip);
 	end,
 	OnTipResized = function(self, TT_CacheForFrames, tip, currentDisplayParams)
-		-- reapply scale to tip
+		-- reapply scale and overall alpha to tip
 		tt:SetScaleToTip(tip);
+		tt:SetOverallAlphaToTip(tip);
 	end,
 	OnTipRescaled = function(self, TT_CacheForFrames, tip, currentDisplayParams)
 		-- reapply gradient to tip
@@ -4538,8 +4591,8 @@ LibFroznFunctions:RegisterForGroupEvents(MOD_NAME, {
 					return;
 				end
 				
-				-- set tip's alpha during fading time
-				tip:SetAlpha(1 - (fadingTime - cfg.preFadeTime) / cfg.fadeTime);
+				-- set tip's alpha during fading time, scaled by overall alpha
+				tt:SetOverallAlphaToTip(tip, 1 - (fadingTime - cfg.preFadeTime) / cfg.fadeTime);
 			end);
 		end);
 	end,

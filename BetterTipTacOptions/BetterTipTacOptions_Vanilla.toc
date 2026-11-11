@@ -1,5 +1,5 @@
 ## Interface: 11509
-## Version: 1.0.1
+## Version: 1.0.2
 ## IconTexture: Interface\AddOns\BetterTipTacOptions\media\tiptac_logo
 ## Title: BetterTipTacOptions
 ## Author: Frozn45, Aezay (Earthen Ring EU)
